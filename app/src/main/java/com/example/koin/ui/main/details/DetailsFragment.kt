@@ -28,7 +28,12 @@ class DetailsFragment(val infoDogs: BreedsResponse)  : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title?.text = infoDogs.breeds[0].name.toString()
+        if (infoDogs.breeds.isNotEmpty()) {
+            title?.text = infoDogs.breeds[0].name
+        } else {
+            title?.text = "nao tem"
+        }
+
         Picasso.with(context).load(infoDogs.url).into(image)
 
     }

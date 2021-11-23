@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.koin.R
+import com.example.koin.model.BreedsResponse
 import com.example.koin.ui.main.details.DetailsActivity
 import com.squareup.picasso.Picasso
 
@@ -22,48 +23,48 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+
     val imageDog by lazy { view?.findViewById<ImageView>(R.id.main_iv) }
     val btnDeslike by lazy { view?.findViewById<Button>(R.id.main_btn_deslike) }
     val btnLike by lazy { view?.findViewById<Button>(R.id.main_btn_like) }
+
+    private lateinit var dogLoadedOk: BreedsResponse
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        setDog()
-        like()
-        deslike()
+        setObservers()
+        getDog()
+        setClicks()
     }
 
-    fun setDog(){
-        viewModel.getListDogs()
+    private fun setObservers() {
         viewModel.dogsLiveData.observe(viewLifecycleOwner, Observer {
+            dogLoadedOk = it[0]
             Picasso.with(context).load(it[0].url).into(imageDog)
         })
     }
 
-    fun like(){
-        btnLike?.setOnClickListener {
-            viewModel.dogsLiveData.observe(viewLifecycleOwner, Observer {listBreeds ->
-                val intent = Intent(context, DetailsActivity::class.java)
-                val list = listBreeds[0]
-                intent.putExtra("data", list)
-                startActivity(intent)
-            })
-        }
+    private fun getDog() {
+        viewModel.getListDogs()
     }
 
-    fun deslike(){
+    private fun setClicks() {
+        btnLike?.setOnClickListener {
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra("data", dogLoadedOk)
+            startActivity(intent)
+        }
+
         btnDeslike?.setOnClickListener {
-            viewModel.getListDogs()
-            viewModel.dogsLiveData.observe(viewLifecycleOwner, Observer {
-                Picasso.with(context).load(it[0].url).into(imageDog)
-            })
+            getDog()
         }
     }
 }
