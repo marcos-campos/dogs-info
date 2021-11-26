@@ -29,4 +29,92 @@
         android:textSize="22dp"
         android:textColor="@color/white"/>
 
+    <TextView
+        android:id="@+id/details_tv_breed_for"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/details_iv"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:text="Breed For: "
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/details_tv_breed_for_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breed for response"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/details_iv"
+        app:layout_constraintStart_toEndOf="@id/details_tv_breed_for"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="5dp"/>
+
+    <TextView
+        android:id="@+id/details_tv_breed_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breed Group"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/details_tv_breed_for"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/details_tv_breed_group_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breed group response"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/details_tv_breed_for"
+        app:layout_constraintStart_toEndOf="@id/details_tv_breed_group"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/details_tv_life_span"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Life Span"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/details_tv_breed_group"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/details_tv_life_span_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Life span response"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/details_tv_breed_group"
+        app:layout_constraintStart_toEndOf="@id/details_tv_life_span"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"/>
+
+    <TextView
+        android:id="@+id/details_tv_temperament"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperament"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/details_tv_life_span"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/details_tv_temperament_response"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperament response"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/details_tv_life_span"
+        app:layout_constraintStart_toEndOf="@id/details_tv_temperament"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

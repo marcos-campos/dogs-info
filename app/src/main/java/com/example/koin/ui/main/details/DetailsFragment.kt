@@ -18,7 +18,13 @@ class DetailsFragment(val infoDogs: BreedsResponse)  : Fragment() {
     }
 
     val title by lazy { view?.findViewById<TextView>(R.id.details_tv) }
+    val breedFor by lazy { view?.findViewById<TextView>(R.id.details_tv_breed_for_response) }
+    val breedGroup by lazy { view?.findViewById<TextView>(R.id.details_tv_breed_group_response) }
+    val lifeSpan by lazy { view?.findViewById<TextView>(R.id.details_tv_life_span_response) }
+    val temperament by lazy { view?.findViewById<TextView>(R.id.details_tv_temperament_response) }
     val image by lazy { view?.findViewById<ImageView>(R.id.details_iv) }
+
+    val messageError: String = "info not found"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -28,8 +34,23 @@ class DetailsFragment(val infoDogs: BreedsResponse)  : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        title?.text = infoDogs.breeds[0].name.toString()
-        Picasso.with(context).load(infoDogs.url).into(image)
+        if(infoDogs.breeds.isNotEmpty()){
 
+            title?.text = infoDogs.breeds[0].name
+            breedFor?.text = infoDogs.breeds[0].bredFor
+            breedGroup?.text = infoDogs.breeds[0].breedGroup
+            lifeSpan?.text = infoDogs.breeds[0].lifeSpan
+            temperament?.text = infoDogs.breeds[0].temperament
+
+        } else {
+
+            title?.text = messageError
+            breedFor?.text = messageError
+            breedGroup?.text = messageError
+            lifeSpan?.text = messageError
+            temperament?.text = messageError
+        }
+
+        Picasso.with(context).load(infoDogs.url).into(image)
     }
 }
