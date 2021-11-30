@@ -36,21 +36,33 @@ class DetailsFragment(val infoDogs: BreedsResponse)  : Fragment() {
 
         if(infoDogs.breeds.isNotEmpty()){
 
-            title?.text = infoDogs.breeds[0].name
-            breedFor?.text = infoDogs.breeds[0].bredFor
-            breedGroup?.text = infoDogs.breeds[0].breedGroup
-            lifeSpan?.text = infoDogs.breeds[0].lifeSpan
-            temperament?.text = infoDogs.breeds[0].temperament
+            setTexts()
 
         } else {
 
-            title?.text = messageError
-            breedFor?.text = messageError
-            breedGroup?.text = messageError
-            lifeSpan?.text = messageError
-            temperament?.text = messageError
+            setMessageError()
         }
 
+        setImage()
+    }
+
+    private fun setTexts(){
+        title?.text = infoDogs.breeds[0].name
+        breedFor?.text = infoDogs.breeds[0].bredFor
+        breedGroup?.text = infoDogs.breeds[0].breedGroup
+        lifeSpan?.text = infoDogs.breeds[0].lifeSpan
+        temperament?.text = infoDogs.breeds[0].temperament
+    }
+
+    private fun setMessageError(){
+        title?.text = messageError
+        breedFor?.text = messageError
+        breedGroup?.text = messageError
+        lifeSpan?.text = messageError
+        temperament?.text = messageError
+    }
+
+    private fun setImage(){
         Picasso.with(context).load(infoDogs.url).into(image)
     }
 }
